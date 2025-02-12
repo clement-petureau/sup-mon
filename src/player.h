@@ -1,22 +1,46 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef GAME_H
+#define GAME_H
 
-#include "supemon.h"
+#include <stdio.h>
 
-#define MAX_NAME_LEN 50
-#define MAX_ITEMS 10
-#define MAX_SUPEMONS 6
-
+// Définition de la structure Supemon
 typedef struct {
-    char name[MAX_NAME_LEN];
-    Supemon supemons[MAX_SUPEMONS];
+    char name[50];
+    int level;
+    int hp;
+    int max_hp;
+    int attack;
+    int defense;
+    int evasion;
+    int accuracy;
+    int speed;
+    struct {
+        char name[50];
+        int power;
+    } moves[4]; 
+} Supemon;
+
+// Définition de la structure Item
+typedef struct {
+    char name[50];
+    int quantity;
+    char effect[100];
+    int value;
+} Item;
+
+// Définition de la structure Player
+typedef struct {
+    char name[50];
     int supemon_count;
-    int supcoins;
-    Item items[MAX_ITEMS];
     int item_count;
+    int supcoins;
+    Supemon supemons[10]; 
+    Item items[10];       
 } Player;
 
+// Prototypes des fonctions
 void init_player(Player *player);
 void list_supemons(Supemon supemons[], int count);
+void list_items(Item items[], int count);
 
-#endif
+#endif // GAME_H
